@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: hn-initializr
+
+server:
+  port: 80
