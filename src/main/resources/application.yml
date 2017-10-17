@@ -1,6 +1,8 @@
 spring:
   application:
     name: hn-initializr
+  thymeleaf:
+    cache: false
 
 server:
   port: 80

@@ -72,7 +72,7 @@ public class TemplateRenderer implements ResourceLoaderAware {
   }
 
   private TemplateLoader mustacheTemplateLoader() {
-    String prefix = "classpath:/templates/";
+    String prefix = "classpath:/mustache_templates/";
     Charset charset = Charset.forName("UTF-8");
     return name -> new InputStreamReader(resourceLoader.getResource(prefix + name).getInputStream(),
         charset);
