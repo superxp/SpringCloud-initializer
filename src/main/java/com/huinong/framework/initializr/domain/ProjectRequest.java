@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -15,13 +16,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProjectRequest {
-  private String applicationName = "DemoApplication";
+  private String bootstrapApplicationName = "DemoApplication";
   private String packageName = "com.example.demo";
-  private String language;
+  private String language = "java";
+  @NotNull(message = "groupId 不能为空!")
   private String groupId;
+  @NotNull(message = "artifactId 不能为空!")
   private String artifactId;
-  private String childArtifactId;
   private String version = "0.0.1-SNAPSHOT";
   private List<CompileDependency> compileDependencies;
   private String versionToken;
+  private String mavenPluginVersion = "1.5.6.RELEASE";
 }

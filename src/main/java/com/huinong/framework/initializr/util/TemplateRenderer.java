@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cglib.beans.BeanMap;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
@@ -36,11 +37,11 @@ public class TemplateRenderer implements ResourceLoaderAware {
 
   private ResourceLoader resourceLoader;
 
-  public String process(String name, Map<String, ?> model) {
+  public String process(String name, BeanMap model) {
     try {
       Template template = getTemplate(name);
       if(model == null){
-        model = Maps.newHashMap();
+        model = BeanMap.create(Maps.newHashMap());
       }
       return template.execute(model);
     } catch (Exception e) {

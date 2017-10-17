@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>{{groupId}}</groupId>
-	<artifactId>{{childArtifactId}}</artifactId>
+	<artifactId>{{artifactId}}-service</artifactId>
 	<packaging>jar</packaging>
 	<name>${artifactId}</name>
 	<parent>
@@ -61,6 +61,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>{{mavenPluginVersion}}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

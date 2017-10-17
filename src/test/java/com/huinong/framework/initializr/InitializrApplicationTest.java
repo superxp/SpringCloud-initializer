@@ -1,20 +1,20 @@
 package com.huinong.framework.initializr;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cglib.beans.BeanMap;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.huinong.framework.initializr.domain.CompileDependency;
 import com.huinong.framework.initializr.domain.ProjectRequest;
-import com.huinong.framework.initializr.util.TemplateRenderer;
+import com.huinong.framework.initializr.generate.ProjectGenerator;
 
 /**
  * Created by Likai on 2017/10/12 0012.
@@ -23,7 +23,10 @@ import com.huinong.framework.initializr.util.TemplateRenderer;
 @SpringBootTest
 public class InitializrApplicationTest {
   @Autowired
-  private TemplateRenderer templateRenderer;
+  private ProjectGenerator projectGenerator;
+
+  @Value("${TMPDIR:.}/initializr")
+  private String tmpdir;
 
   @Test
   public void testPom(){
@@ -33,8 +36,20 @@ public class InitializrApplicationTest {
     compileDependencies.add(CompileDependency.builder().groupId("com.huinong.truffle")
             .artifactId("hn-framework-starter-web").build());
     ProjectRequest projectRequest = ProjectRequest.builder().groupId("com.initializr").artifactId("test")
-            .version("0.0.1-SNAPSHOT").childArtifactId("test-service").compileDependencies(compileDependencies).versionToken("0.4.0-SNAPSHOT").build();
-    BeanMap beanMap = BeanMap.create(projectRequest);
-    System.out.println(templateRenderer.process("starter-pom.xml", beanMap));
+            .version("0.0.1-SNAPSHOT").compileDependencies(compileDependencies)
+            .versionToken("0.4.0-SNAPSHOT").mavenPluginVersion("1.5.6.RELEASE").packageName("com.example.demo")
+            .bootstrapApplicationName("DemoApplication").language("java").build();
+    File dir = projectGenerator.generateProjectStructure(projectRequest);
+    System.out.println(dir.getName());
+    projectGenerator.cleanTempFiles(dir);
+  }
+
+  @Test
+  public void testSystemProperties() throws IOException {
+    File temporaryDirectory = new File(tmpdir);
+    temporaryDirectory.delete();
+    temporaryDirectory.mkdirs();
+    File tmpdir = File.createTempFile("tmp", "", temporaryDirectory);
+    System.out.println(tmpdir.getName());
   }
 }
