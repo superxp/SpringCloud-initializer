@@ -3,6 +3,7 @@ spring:
     name: hn-initializr
   thymeleaf:
     cache: false
+    prefix: classpath:/thymeleaf_templates/
 
 server:
   port: 80

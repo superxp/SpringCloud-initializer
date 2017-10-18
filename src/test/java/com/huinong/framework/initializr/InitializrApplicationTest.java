@@ -35,13 +35,17 @@ public class InitializrApplicationTest {
             .artifactId("spring-boot-configuration-processor").build());
     compileDependencies.add(CompileDependency.builder().groupId("com.huinong.truffle")
             .artifactId("hn-framework-starter-web").build());
+    compileDependencies.add(CompileDependency.builder().groupId("com.huinong.truffle")
+            .artifactId("hn-framework-starter-mybatis").build());
+    compileDependencies.add(CompileDependency.builder().groupId("com.huinong.truffle")
+            .artifactId("hn-framework-starter-redis").build());
     ProjectRequest projectRequest = ProjectRequest.builder().groupId("com.initializr").artifactId("test")
             .version("0.0.1-SNAPSHOT").compileDependencies(compileDependencies)
             .versionToken("0.4.0-SNAPSHOT").mavenPluginVersion("1.5.6.RELEASE").packageName("com.example.demo")
             .bootstrapApplicationName("DemoApplication").language("java").build();
     File dir = projectGenerator.generateProjectStructure(projectRequest);
     System.out.println(dir.getName());
-    projectGenerator.cleanTempFiles(dir);
+    //projectGenerator.cleanTempFiles(dir);
   }
 
   @Test

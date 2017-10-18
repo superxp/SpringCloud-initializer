@@ -9,8 +9,8 @@
 	<name>${artifactId}</name>
 
 	<modules>
-		<module>${{artifactId}}-api</module>
-		<module>${{artifactId}}-service</module>
+		<module>{{artifactId}}-api</module>
+		<module>{{artifactId}}-service</module>
 	</modules>
 
     <build>

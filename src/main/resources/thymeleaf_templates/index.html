@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HN project initializr</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-sm-12 col-md-6">
+        <h2>Project Metadata</h2>
+        <p>Artifact coordinates</p>
+        <div class="form-group groupid-form-group">
+            <label for="groupId" class="control-label">Group</label>
+            <input tabindex="4" id="groupId" class="form-control" type="text" value="com.example" name="groupId">
+        </div>
+        <div class="form-group artifactid-form-group">
+            <label for="artifactId" class="control-label">Artifact</label>
+            <input tabindex="5" id="artifactId" class="form-control" type="text" value="demo" name="artifactId">
+        </div>
+        <div class="form-group full hidden name-form-group">
+            <label for="name" class="control-label">Name</label>
+            <input tabindex="6" id="name" class="form-control" type="text" value="demo" name="name">
+        </div>
+        <div class="form-group full hidden description-form-group">
+            <label for="description" class="control-label">Description</label>
+            <input tabindex="7" id="description" class="form-control" type="text" value="Demo project for Spring Boot"
+                   name="description">
+        </div>
+        <div class="form-group full hidden packagename-form-group">
+            <label for="packageName" class="control-label">Package Name</label>
+            <input tabindex="8" id="packageName" class="form-control" type="text" value="com.example.demo"
+                   name="packageName">
+        </div>
+        <div class="form-group full hidden packaging-form-group">
+            <label for="packaging" class="control-label">Packaging</label>
+            <select tabindex="9" class="form-control" id="packaging" name="packaging">
+                <option value="jar" selected="">Jar</option>
+                <option value="war">War</option>
+            </select>
+        </div>
+        <div class="form-group full hidden javaversion-form-group">
+            <label for="javaVersion" class="control-label">Java Version</label>
+            <select tabindex="10" class="form-control" name="javaVersion" id="javaVersion">
+                <option value="1.8" selected="">1.8</option>
+                <option value="1.7">1.7</option>
+                <option value="1.6">1.6</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <h2>Dependencies</h2>
+        <p>Add Spring Boot Starters and dependencies to your application</p>
+        <div class="form-group">
+            <label for="autocomplete" class="control-label">Search for dependencies</label>
+            <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input tabindex="-1"
+                                                                                                      class="form-control tt-hint"
+                                                                                                      type="text"
+                                                                                                      readonly=""
+                                                                                                      autocomplete="off"
+                                                                                                      spellcheck="false"
+                                                                                                      style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(250, 250, 250);"
+                                                                                                      dir="ltr"><input
+                    tabindex="11" id="autocomplete" class="form-control tt-input" type="text"
+                    placeholder="Web, Security, JPA, Actuator, Devtools..." name="autocomplete" autocomplete="off"
+                    spellcheck="false" dir="auto"
+                    style="position: relative; vertical-align: top; background-color: transparent;"><pre
+                    aria-hidden="true"
+                    style="position: absolute; visibility: hidden; white-space: pre; font-family: monospace; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;">lombok</pre><div
+                    class="tt-menu tt-empty"
+                    style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div
+                    class="tt-dataset tt-dataset-starters"></div></div></span>
+        </div>
+        <div class="form-group">
+            <label for="starters" class="control-label">Selected Dependencies</label>
+            <div id="starters">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

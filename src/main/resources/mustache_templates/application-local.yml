@@ -1,0 +1,39 @@
+{{#customTag}}
+hnMysql:
+{{/customTag}}
+{{#useMybatis}}
+  writeDemo:
+    username: caidi
+    password: caidi
+    url: jdbc:mysql://127.0.0.1:3306/database?useSSL=false
+    mybatis:
+      mybatisConfig: mapper/mybatis-config.xml
+      mapperLocation: mapper/write/*.xml
+      mapperScanner: {{packageName}}.dao.write
+      aliasPackage: {{packageName}}.entity
+
+  readDemo:
+    username: caidi
+    password: caidi
+    url: jdbc:mysql://127.0.0.1:3306/database?useSSL=false
+    mybatis:
+      mybatisConfig: mapper/mybatis-config.xml
+      mapperLocation: mapper/read/*.xml
+      mapperScanner: {{packageName}}.dao.read
+      aliasPackage: {{packageName}}.entity
+{{/useMybatis}}
+
+{{#useRedis}}
+  cluster-nodes: 127.0.0.1:7000
+{{/useRedis}}
+
+{{#useKafka}}
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      bootstrap-servers: 127.0.0.1:9092
+      auto-offset-reset: latest
+      group-id: hn-kafka-test-1
+{{/useKafka}}

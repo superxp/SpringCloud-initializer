@@ -37,11 +37,11 @@ public class TemplateRenderer implements ResourceLoaderAware {
 
   private ResourceLoader resourceLoader;
 
-  public String process(String name, BeanMap model) {
+  public String process(String name, Map model) {
     try {
       Template template = getTemplate(name);
       if(model == null){
-        model = BeanMap.create(Maps.newHashMap());
+        model = Maps.newHashMap();
       }
       return template.execute(model);
     } catch (Exception e) {
