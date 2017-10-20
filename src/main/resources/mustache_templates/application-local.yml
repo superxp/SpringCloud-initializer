@@ -5,7 +5,7 @@ hnMysql:
   writeDemo:
     username: caidi
     password: caidi
-    url: jdbc:mysql://127.0.0.1:3306/database?useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/database?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
     mybatis:
       mybatisConfig: mapper/mybatis-config.xml
       mapperLocation: mapper/write/*.xml
@@ -15,16 +15,15 @@ hnMysql:
   readDemo:
     username: caidi
     password: caidi
-    url: jdbc:mysql://127.0.0.1:3306/database?useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/database?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
     mybatis:
       mybatisConfig: mapper/mybatis-config.xml
       mapperLocation: mapper/read/*.xml
       mapperScanner: {{packageName}}.dao.read
       aliasPackage: {{packageName}}.entity
 {{/useMybatis}}
-
 {{#useRedis}}
-  cluster-nodes: 127.0.0.1:7000
+  cluster-nodes: 10.10.3.51:2001,10.10.3.51:2002,10.10.3.51:2003
 {{/useRedis}}
 
 {{#useKafka}}
@@ -37,3 +36,14 @@ spring:
       auto-offset-reset: latest
       group-id: hn-kafka-test-1
 {{/useKafka}}
+
+{{#useZooKeeper}}
+hnZookeeper:
+  connect-string: 10.10.3.80:2181  # zookeeper连接地址多个用逗号隔开
+  enabled: true # 默认开启
+  baseSleepTimeMs: 50
+  maxRetries: 10
+  maxSleepMs: 10
+  blockUntilConnectedWait: 10
+  blockUntilConnectedUnit: seconds
+{{/useZooKeeper}}

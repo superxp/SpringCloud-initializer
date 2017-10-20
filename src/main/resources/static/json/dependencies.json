@@ -1,0 +1,42 @@
+[
+  {
+    "groupId": "org.springframework.boot",
+    "artifactId": "spring-boot-configuration-processor",
+    "name": "processor"
+  },
+  {
+    "groupId": "com.huinong.truffle",
+    "artifactId": "hn-framework-starter-web",
+    "name": "web"
+  },
+  {
+    "groupId": "com.huinong.truffle",
+    "artifactId": "hn-framework-starter-mybatis",
+    "name": "mybatis"
+  },
+  {
+    "groupId": "com.huinong.truffle",
+    "artifactId": "hn-framework-starter-redis",
+    "name": "redis"
+  },
+  {
+    "groupId": "com.huinong.truffle",
+    "artifactId": "hn-framework-starter-elasticjob",
+    "name": "elasticjob"
+  },
+  {
+    "groupId": "com.huinong.truffle",
+    "artifactId": "hn-framework-starter-sleuth",
+    "name": "sleuth"
+  },
+  {
+    "groupId": "com.huinong.truffle",
+    "artifactId": "hn-framework-starter-zookeeper",
+    "name": "zookeeper"
+  },
+  {
+    "groupId": "com.huinong.truffle",
+    "artifactId": "hn-framework-starter-kafka",
+    "name": "kafka"
+  }
+]

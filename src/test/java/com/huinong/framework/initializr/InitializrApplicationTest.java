@@ -31,21 +31,22 @@ public class InitializrApplicationTest {
   @Test
   public void testPom(){
     List<CompileDependency> compileDependencies = Lists.newArrayList();
-    compileDependencies.add(CompileDependency.builder().groupId("org.springframework.boot")
-            .artifactId("spring-boot-configuration-processor").build());
-    compileDependencies.add(CompileDependency.builder().groupId("com.huinong.truffle")
-            .artifactId("hn-framework-starter-web").build());
-    compileDependencies.add(CompileDependency.builder().groupId("com.huinong.truffle")
-            .artifactId("hn-framework-starter-mybatis").build());
-    compileDependencies.add(CompileDependency.builder().groupId("com.huinong.truffle")
-            .artifactId("hn-framework-starter-redis").build());
-    ProjectRequest projectRequest = ProjectRequest.builder().groupId("com.initializr").artifactId("test")
-            .version("0.0.1-SNAPSHOT").compileDependencies(compileDependencies)
-            .versionToken("0.4.0-SNAPSHOT").mavenPluginVersion("1.5.6.RELEASE").packageName("com.example.demo")
-            .bootstrapApplicationName("DemoApplication").language("java").build();
+    compileDependencies.add(new CompileDependency().setGroupId("org.springframework.boot")
+        .setArtifactId("spring-boot-configuration-processor"));
+    compileDependencies.add(new CompileDependency().setGroupId("com.huinong.truffle")
+        .setArtifactId("hn-framework-starter-web"));
+    compileDependencies.add(new CompileDependency().setGroupId("com.huinong.truffle")
+        .setArtifactId("hn-framework-starter-mybatis"));
+    compileDependencies.add(new CompileDependency().setGroupId("com.huinong.truffle")
+        .setArtifactId("hn-framework-starter-redis"));
+    ProjectRequest projectRequest = new ProjectRequest().setGroupId("com.initializr")
+        .setArtifactId("test").setVersion("0.0.1-SNAPSHOT")
+        .setCompileDependencies(compileDependencies).setVersionToken("0.4.0-SNAPSHOT")
+        .setMavenPluginVersion("1.5.6.RELEASE").setPackageName("com.example.demo")
+        .setBootstrapApplicationName("DemoApplication").setLanguage("java");
     File dir = projectGenerator.generateProjectStructure(projectRequest);
     System.out.println(dir.getName());
-    //projectGenerator.cleanTempFiles(dir);
+    projectGenerator.cleanTempFiles(dir);
   }
 
   @Test

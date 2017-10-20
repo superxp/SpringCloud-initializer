@@ -1,26 +1,31 @@
 package com.huinong.framework.initializr.generate;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.charset.Charset;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
-import com.google.common.collect.Maps;
-import com.huinong.framework.initializr.domain.CompileDependency;
-import com.huinong.framework.initializr.domain.ProjectRequest;
-import com.huinong.framework.initializr.util.ResourceLoaderUtils;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.huinong.framework.initializr.util.TemplateRenderer;
-
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cglib.beans.BeanMap;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StreamUtils;
 
-import javax.swing.text.html.Option;
+import com.google.common.collect.Maps;
+import com.huinong.framework.initializr.domain.CompileDependency;
+import com.huinong.framework.initializr.domain.ProjectRequest;
+import com.huinong.framework.initializr.util.ResourceLoaderUtils;
+import com.huinong.framework.initializr.util.TemplateRenderer;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by Likai on 2017/10/12 0012.
@@ -31,6 +36,7 @@ public class ProjectGenerator {
   private static final String HN_FRAMEWORK_STARTER_MYBATIS = "hn-framework-starter-mybatis";
   private static final String HN_FRAMEWORK_STARTER_REDIS = "hn-framework-starter-redis";
   private static final String HN_FRAMEWORK_STARTER_KAFKA = "hn-framework-starter-kafka";
+  private static final String HN_FRAMEWORK_STARTER_ZOOKEEPER = "hn-framework-starter-zookeeper";
   @Autowired
   private TemplateRenderer templateRenderer;
 
@@ -39,7 +45,7 @@ public class ProjectGenerator {
   @Value("${TMPDIR:.}/initializr")
   private String tmpdir;
 
-  public File generateProjectStructure(ProjectRequest request) {
+  public File generateProjectStructure(@Valid ProjectRequest request) {
     File rootDir = createRootDir();
     File dir = new File(rootDir, request.getArtifactId());
     dir.mkdir();
@@ -58,6 +64,11 @@ public class ProjectGenerator {
     // 生成api子工程
     generateApiProjectStructure(dir, request, model);
     return rootDir;
+  }
+
+  public File createDistributionFile(File dir, String extension) {
+    File download = new File(dir, dir.getName() + extension);
+    return download;
   }
 
   /**
@@ -89,6 +100,9 @@ public class ProjectGenerator {
               || HN_FRAMEWORK_STARTER_REDIS.equals(compileDependency.getArtifactId())){
         model.put("customTag", true);
       }
+          if (HN_FRAMEWORK_STARTER_ZOOKEEPER.equals(compileDependency.getArtifactId())) {
+            model.put("useZooKeeper", true);
+          }
     }));
     File src = new File(new File(serviceDir, "src/main/" + language),
         request.getPackageName().replace(".", "/"));
@@ -204,19 +218,22 @@ public class ProjectGenerator {
   }
 
   private File createRootDir() {
-    File rootDir;
     try {
-      if (temporaryDirectory == null) {
-        temporaryDirectory = new File(tmpdir);
-        temporaryDirectory.mkdirs();
-      }
-      rootDir = File.createTempFile("tmp", "", temporaryDirectory);
+      File rootDir = File.createTempFile("tmp", "", getTemporaryDirectory());
+      rootDir.delete();
+      rootDir.mkdirs();
+      return rootDir;
     } catch (IOException e) {
       throw new IllegalStateException("Cannot create temp dir", e);
     }
-    rootDir.delete();
-    rootDir.mkdirs();
-    return rootDir;
+  }
+
+  private File getTemporaryDirectory() {
+    if (temporaryDirectory == null) {
+      temporaryDirectory = new File(tmpdir);
+      temporaryDirectory.mkdirs();
+    }
+    return temporaryDirectory;
   }
 
   public void cleanTempFiles(File dir) {

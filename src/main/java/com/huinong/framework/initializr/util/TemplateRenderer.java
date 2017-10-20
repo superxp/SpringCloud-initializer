@@ -6,23 +6,19 @@ import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
-import com.google.common.collect.Maps;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.cglib.beans.BeanMap;
 import org.springframework.context.ResourceLoaderAware;
-import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ConcurrentReferenceHashMap;
 
+import com.google.common.collect.Maps;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Mustache.Compiler;
 import com.samskivert.mustache.Mustache.TemplateLoader;
 import com.samskivert.mustache.Template;
+
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Dave Syer

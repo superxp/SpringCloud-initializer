@@ -4,6 +4,7 @@ spring:
   thymeleaf:
     cache: false
     prefix: classpath:/thymeleaf_templates/
+    mode: LEGACYHTML5
 
 server:
   port: 80
