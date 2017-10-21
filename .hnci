@@ -1,0 +1,6 @@
+{
+    "buildType": "maven",
+    "mavenCmd": "-DskipTests=true clean package",
+    "jarRelPath": "hn-spring-boot-initializr/target/hn-spring-boot-initializr-0.0.1-SNAPSHOT.jar",
+    "javaOpts": "-Xms1024m -Xmx1024m"
+}
