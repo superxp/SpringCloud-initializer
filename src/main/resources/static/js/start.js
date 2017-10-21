@@ -171,19 +171,7 @@ $(function () {
         generatePackageName();
     });
     $(".tofullversion a").on("click", function () {
-        $(".full").removeClass("hidden");
-        $(".tofullversion").addClass("hidden");
-        $(".tosimpleversion").removeClass("hidden");
-        $("body").scrollTop(0);
-        return false;
-    });
-    $(".tosimpleversion a").on("click", function () {
-        $(".full").addClass("hidden");
-        $(".tofullversion").removeClass("hidden");
-        $(".tosimpleversion").addClass("hidden");
-        applyParams();
-        $("body").scrollTop(0);
-        return false;
+        $(".full")[0].classList.toggle("hidden");
     });
     var maxSuggestions = 10;
     var starters = new Bloodhound({
@@ -262,14 +250,6 @@ $(function () {
         }
     });
     applyParams();
-    if ("onhashchange" in window) {
-        window.onhashchange = function () {
-            $(".full").addClass("hidden");
-            $(".tofullversion").removeClass("hidden");
-            $(".tosimpleversion").addClass("hidden");
-            applyParams();
-        }
-    }
 
     $("button[name='generate-project']").on("click", function () {
         submit();

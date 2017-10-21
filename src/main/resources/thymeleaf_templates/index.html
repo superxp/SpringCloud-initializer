@@ -42,6 +42,10 @@
                 <input tabindex="8" id="packageName" class="form-control" type="text" value="com.example.demo"
                        name="packageName">
             </div>
+            <div class="row tofullversion">
+                <p>Don't know what to look for? Want more options? <a href="javascript:void(0)">Switch to the full
+                    version.</a></p>
+            </div>
         </div>
         <div class="col-sm-12 col-md-6">
             <h2>Dependencies</h2>
@@ -81,7 +85,7 @@
         </div>
     </div>
     <div class="row">
-        <div id="dependencies" class="full">
+        <div id="dependencies" class="full hidden">
             <div class="form-group col-sm-6" style="width: 100%">
                 <div class="checkbox" style="width: 49%; display: inline-block" th:each="dependency : ${dependencies}">
                     <label>
