@@ -7,7 +7,7 @@ hnMysql:
     password: caidi
     url: jdbc:mysql://127.0.0.1:3306/database?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
     mybatis:
-      mybatisConfig: mapper/mybatis-config.xml
+      mybatisConfig: mybatis-config.xml
       mapperLocation: mapper/write/*.xml
       mapperScanner: {{packageName}}.dao.write
       aliasPackage: {{packageName}}.entity
@@ -17,7 +17,7 @@ hnMysql:
     password: caidi
     url: jdbc:mysql://127.0.0.1:3306/database?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
     mybatis:
-      mybatisConfig: mapper/mybatis-config.xml
+      mybatisConfig: mybatis-config.xml
       mapperLocation: mapper/read/*.xml
       mapperScanner: {{packageName}}.dao.read
       aliasPackage: {{packageName}}.entity
