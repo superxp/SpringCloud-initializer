@@ -256,13 +256,17 @@ $(function () {
     });
 
     function submit() {
+        var bootstrapApplicationName = $("<input>").attr("type", "hidden").attr("name", "bootstrapApplicationName").val($("#bootstrapApplicationName").val());
+        if (!/^[A-Z][A-Za-z0-9]+$/.test(bootstrapApplicationName.val())) {
+            alert("Incorrect ApplicationName format, Please capitalize the first letter and the rest using letters or numbers.(e.g MyApplication).");
+            return false;
+        }
         $("#form").empty();
         $("#dependencies input:checked").each(function (i) {
             var groupId = $("<input>").attr("type", "hidden").attr("name", "compileDependencies[" + i + "].groupId").val($(this).data("groupid"));
             var artifactId = $("<input>").attr("type", "hidden").attr("name", "compileDependencies[" + i + "].artifactId").val($(this).data("artifactid"));
             $("#form").append(groupId).append(artifactId);
         });
-        var bootstrapApplicationName = $("<input>").attr("type", "hidden").attr("name", "bootstrapApplicationName").val($("#bootstrapApplicationName").val());
         var packageName = $("<input>").attr("type", "hidden").attr("name", "packageName").val($("#packageName").val());
         var groupId = $("<input>").attr("type", "hidden").attr("name", "groupId").val($("#groupId").val());
         var artifactId = $("<input>").attr("type", "hidden").attr("name", "artifactId").val($("#artifactId").val());
