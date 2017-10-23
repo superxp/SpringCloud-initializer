@@ -8,10 +8,12 @@ import java.util.List;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.Zip;
 import org.apache.tools.ant.types.ZipFileSet;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,6 +51,12 @@ public class InitializrController {
   @ResponseBody
   public ResponseEntity<byte[]> springZip(/* @Validated */ ProjectRequest projectRequest)
       throws IOException {
+    if (CollectionUtils.isEmpty(projectRequest.getCompileDependencies())) {
+      List<CompileDependency> compileDependencies = Lists.newArrayList();
+      compileDependencies.add(new CompileDependency().setGroupId("com.huinong.truffle")
+          .setArtifactId("hn-framework-starter-web"));
+      projectRequest.setCompileDependencies(compileDependencies);
+    }
     File dir = projectGenerator.generateProjectStructure(projectRequest);
 
     File download = projectGenerator.createDistributionFile(dir, ".zip");
