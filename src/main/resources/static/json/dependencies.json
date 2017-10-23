@@ -1,10 +1,5 @@
 [
   {
-    "groupId": "org.springframework.boot",
-    "artifactId": "spring-boot-configuration-processor",
-    "name": "processor"
-  },
-  {
     "groupId": "com.huinong.truffle",
     "artifactId": "hn-framework-starter-web",
     "name": "web"
