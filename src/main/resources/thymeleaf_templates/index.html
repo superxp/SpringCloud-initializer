@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="/css/spring.css"/>
-    <title>HN project initializr</title>
+    <title>Xiaopang project initializr</title>
 </head>
 <body>
 <div class="container start-main">
@@ -13,7 +13,7 @@
         <div class="form-group project-choice">
             <h2>
                     <span class="rwd-line">
-                        <label th:text="'HN framework dependencies:&nbsp' + ${version}">HN framework dependencies:</label>
+                        <label th:text="'XiaoPang framework dependencies:&nbsp' + ${version}">XiaoPang framework dependencies:</label>
                         <input type="hidden" name="versionToken" id="versionToken" th:value="${version}">
                     </span>
             </h2>
@@ -25,7 +25,7 @@
             <p>Artifact coordinates</p>
             <div class="form-group groupid-form-group">
                 <label for="groupId" class="control-label">Group</label>
-                <input tabindex="4" id="groupId" class="form-control" type="text" value="com.huinong"
+                <input tabindex="4" id="groupId" class="form-control" type="text" value="com.xiaopang"
                        name="groupId">
             </div>
             <div class="form-group artifactid-form-group">
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group artifactid-form-group">
                 <label for="packageName" class="control-label">Package Name</label>
-                <input tabindex="8" id="packageName" class="form-control" type="text" value="com.huinong.demo"
+                <input tabindex="8" id="packageName" class="form-control" type="text" value="com.xiaopang.demo"
                        name="packageName">
             </div>
             <div class="row tofullversion">
@@ -63,7 +63,7 @@
                                    dir="ltr">
                             <input
                                     tabindex="11" id="autocomplete" class="form-control tt-input" type="text"
-                                    placeholder="Web, Zookeeper, Kafka, Mybaties, Redis ..." name="autocomplete"
+                                    placeholder="base, cache, feignclient, mybatis, swagger ..." name="autocomplete"
                                     autocomplete="off"
                                     spellcheck="false" dir="auto"
                                     style="position: relative; vertical-align: top; background-color: transparent;">

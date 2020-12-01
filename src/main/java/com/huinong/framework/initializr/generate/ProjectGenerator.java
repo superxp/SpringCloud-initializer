@@ -28,15 +28,15 @@ import com.huinong.framework.initializr.util.TemplateRenderer;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by Likai on 2017/10/12 0012.
+ * Created by Xiaopang on 2017/10/12 0012.
  */
 @Slf4j
 @Component
 public class ProjectGenerator {
-  private static final String HN_FRAMEWORK_STARTER_MYBATIS = "hn-framework-starter-mybatis";
-  private static final String HN_FRAMEWORK_STARTER_REDIS = "hn-framework-starter-redis";
-  private static final String HN_FRAMEWORK_STARTER_KAFKA = "hn-framework-starter-kafka";
-  private static final String HN_FRAMEWORK_STARTER_ZOOKEEPER = "hn-framework-starter-zookeeper";
+  private static final String XP_FRAMEWORK_STARTER_MYBATIS = "otter-framework-mybatis";
+  private static final String XP_FRAMEWORK_STARTER_REDIS = "otter-framework-starter-redis";
+  private static final String XP_FRAMEWORK_STARTER_KAFKA = "otter-framework-kafka";
+  private static final String XP_FRAMEWORK_STARTER_ZOOKEEPER = "otter-framework-starter-zookeeper";
   @Autowired
   private TemplateRenderer templateRenderer;
 
@@ -59,6 +59,10 @@ public class ProjectGenerator {
     // writeMavenWrapper(dir);
     // 生成gitignore文件
     generateGitIgnore(dir);
+    //生成ediotrconfig文件
+    generateEditorconfig(dir);
+    //生成gitlab文件
+    generateGitlabCi(dir);
     // 生成service子工程
     generateServiceProjectStructure(dir, request, model);
     // 生成api子工程
@@ -87,20 +91,20 @@ public class ProjectGenerator {
 
     List<CompileDependency> compileDependencies = request.getCompileDependencies();
     Optional.ofNullable(compileDependencies).ifPresent(dependencies -> dependencies.forEach(compileDependency -> {
-      if(HN_FRAMEWORK_STARTER_MYBATIS.equals(compileDependency.getArtifactId())){
+      if(XP_FRAMEWORK_STARTER_MYBATIS.equals(compileDependency.getArtifactId())){
         model.put("useMybatis", true);
       }
-      if(HN_FRAMEWORK_STARTER_REDIS.equals(compileDependency.getArtifactId())){
+      if(XP_FRAMEWORK_STARTER_REDIS.equals(compileDependency.getArtifactId())){
         model.put("useRedis", true);
       }
-      if(HN_FRAMEWORK_STARTER_KAFKA.equals(compileDependency.getArtifactId())){
+      if(XP_FRAMEWORK_STARTER_KAFKA.equals(compileDependency.getArtifactId())){
         model.put("useKafka", true);
       }
-      if(HN_FRAMEWORK_STARTER_MYBATIS.equals(compileDependency.getArtifactId())
-              || HN_FRAMEWORK_STARTER_REDIS.equals(compileDependency.getArtifactId())){
+      if(XP_FRAMEWORK_STARTER_MYBATIS.equals(compileDependency.getArtifactId())
+              || XP_FRAMEWORK_STARTER_REDIS.equals(compileDependency.getArtifactId())){
         model.put("customTag", true);
       }
-          if (HN_FRAMEWORK_STARTER_ZOOKEEPER.equals(compileDependency.getArtifactId())) {
+          if (XP_FRAMEWORK_STARTER_ZOOKEEPER.equals(compileDependency.getArtifactId())) {
             model.put("useZooKeeper", true);
           }
     }));
@@ -152,6 +156,7 @@ public class ProjectGenerator {
     apiDir.mkdir();
     String pom = doGenerateMavenPom("api-pom.xml", model);
     writeText(new File(apiDir, "pom.xml"), pom);
+
   }
 
   private String doGenerateMavenPom(String templateName, Map model) {
@@ -210,6 +215,16 @@ public class ProjectGenerator {
   protected void generateGitIgnore(File dir) {
     String body = templateRenderer.process("gitignore.tmpl", null);
     writeText(new File(dir, ".gitignore"), body);
+  }
+
+  protected void generateEditorconfig(File dir) {
+        String body = templateRenderer.process("editorconfig.tmpl", null);
+        writeText(new File(dir, ".editorconfig"), body);
+  }
+
+  protected void generateGitlabCi(File dir){
+      String body = templateRenderer.process("gitlab-ci.tmpl", null);
+      writeText(new File(dir, ".gitlab-ci.yml"), body);
   }
 
   public void write(File target, String templateName, Map model) {

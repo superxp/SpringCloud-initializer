@@ -1,5 +1,5 @@
 {{#customTag}}
-hnMysql:
+xpMysql:
 {{/customTag}}
 {{#useMybatis}}
   writeDemo:
@@ -38,7 +38,7 @@ spring:
 {{/useKafka}}
 
 {{#useZooKeeper}}
-hnZookeeper:
+xpZookeeper:
   connect-string: 10.10.3.80:2181  # zookeeper连接地址多个用逗号隔开
   enabled: true # 默认开启
   baseSleepTimeMs: 50

@@ -9,7 +9,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StreamUtils;
 
 /**
- * Created by Likai on 2017/10/13 0013.
+ * Created by Xiaopang on 2017/10/13 0013.
  */
 public class ResourceLoaderUtils {
   private static final Charset UTF_8 = Charset.forName("UTF-8");

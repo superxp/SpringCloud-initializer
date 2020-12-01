@@ -15,8 +15,8 @@
 
     <repositories>
         <repository>
-            <id>huinong</id>
-            <name>Nexus HuiNong Repository</name>
+            <id>xiaopang</id>
+            <name>Nexus Xiaopang Repository</name>
             <url>http://10.10.1.42:8081/nexus/content/groups/public/</url>
         </repository>
     </repositories>
@@ -24,8 +24,8 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.huinong.truffle</groupId>
-                <artifactId>hn-framework-dependencies</artifactId>
+                <groupId>com.xiaopang.truffle</groupId>
+                <artifactId>xiaopang-framework-dependencies</artifactId>
                 <version>{{versionToken}}</version>
                 <type>pom</type>
                 <scope>import</scope>

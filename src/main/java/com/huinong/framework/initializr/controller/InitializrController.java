@@ -28,7 +28,7 @@ import com.huinong.framework.initializr.generate.ProjectGenerator;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by Likai on 2017/10/18 0018.
+ * Created by Xiaopang on 2017/10/18 0018.
  */
 
 @Controller
@@ -53,8 +53,8 @@ public class InitializrController {
       throws IOException {
     if (CollectionUtils.isEmpty(projectRequest.getCompileDependencies())) {
       List<CompileDependency> compileDependencies = Lists.newArrayList();
-      compileDependencies.add(new CompileDependency().setGroupId("com.huinong.truffle")
-          .setArtifactId("hn-framework-starter-web"));
+      compileDependencies.add(new CompileDependency().setGroupId("com.nboot.parent")
+          .setArtifactId("nboot-framework-starter-web"));
       projectRequest.setCompileDependencies(compileDependencies);
     }
     File dir = projectGenerator.generateProjectStructure(projectRequest);

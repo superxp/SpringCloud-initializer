@@ -17,7 +17,7 @@ import com.huinong.framework.initializr.domain.ProjectRequest;
 import com.huinong.framework.initializr.generate.ProjectGenerator;
 
 /**
- * Created by Likai on 2017/10/12 0012.
+ * Created by Xiaopang on 2017/10/12 0012.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,12 +33,12 @@ public class InitializrApplicationTest {
     List<CompileDependency> compileDependencies = Lists.newArrayList();
     compileDependencies.add(new CompileDependency().setGroupId("org.springframework.boot")
         .setArtifactId("spring-boot-configuration-processor"));
-    compileDependencies.add(new CompileDependency().setGroupId("com.huinong.truffle")
-        .setArtifactId("hn-framework-starter-web"));
-    compileDependencies.add(new CompileDependency().setGroupId("com.huinong.truffle")
-        .setArtifactId("hn-framework-starter-mybatis"));
-    compileDependencies.add(new CompileDependency().setGroupId("com.huinong.truffle")
-        .setArtifactId("hn-framework-starter-redis"));
+    compileDependencies.add(new CompileDependency().setGroupId("com.xiaopang.truffle")
+        .setArtifactId("xiaopang-framework-starter-web"));
+    compileDependencies.add(new CompileDependency().setGroupId("com.xiaopang.truffle")
+        .setArtifactId("xiaopang-framework-starter-mybatis"));
+    compileDependencies.add(new CompileDependency().setGroupId("com.xiaopang.truffle")
+        .setArtifactId("xiaopang-framework-starter-redis"));
     ProjectRequest projectRequest = new ProjectRequest().setGroupId("com.initializr")
         .setArtifactId("test").setVersion("0.0.1-SNAPSHOT")
         .setCompileDependencies(compileDependencies).setVersionToken("0.4.0-SNAPSHOT")
