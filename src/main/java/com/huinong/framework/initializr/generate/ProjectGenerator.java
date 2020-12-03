@@ -54,8 +54,8 @@ public class ProjectGenerator {
     String pom = doGenerateMavenPom("parent-pom.xml", model);
     writeText(new File(dir, "pom.xml"), pom);
     // 生成jenkens配置文件
-    String hnci = doGenerateMavenPom("hnci", model);
-    writeText(new File(dir, ".hnci"), hnci);
+    String hnci = doGenerateMavenPom("xpci", model);
+    writeText(new File(dir, ".xpci"), hnci);
     // writeMavenWrapper(dir);
     // 生成gitignore文件
     generateGitIgnore(dir);
